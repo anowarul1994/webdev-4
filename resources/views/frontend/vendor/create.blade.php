@@ -12,6 +12,17 @@
         <form action=" {{url('vendor/product/store')}} " method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
+                <label for="">Type Product</label>
+                <select class="form-control" name="type" id=""> 
+                    <option disabled selected >Select type Product</option>
+                    <option value="new">New Arrivals</option>
+                    <option value="hot">Hot Products</option>
+                    <option value="discount">Discount Products</option>
+                                        
+                </select>
+            </div>
+           
+            <div class="form-group">
                 <label for="">Category</label>
                 <select class="form-control" name="category_id" id=""> 
                     <option disabled selected >Select A Category</option>

@@ -8,8 +8,16 @@
                <div class="top-right">
                     <ul>
                          <li><a href="checkout.html">Checkout</a></li>
+                         <li><a href=" {{url('/user/login/form')}}  ">User Login</a></li>
+                         <li><a href=" {{url('/user/registration')}} "> User Register </a></li>     
+                         @if (session()->has('vendorId'))
+                         <li><a href=" {{url('/vendor/dashboard')}}" class="badge badge-danger">{{ session()->get('vendorName')}}</a></li>
+                         <li><a href=" {{url('/vendor/logout')}} "> Log Out </a></li>
+                         @else 
                          <li><a href=" {{url('/vendor/login/form')}}  ">Login</a></li>
-                         <li><a href=" {{url('/vendor/registration')}} "> Vendor Account </a></li>
+                         <li><a href=" {{url('/vendor/registration')}} "> Vendor Account </a></li>                       
+                         @endif
+                         
                     </ul>
                </div>
                <div class="clearfix"></div>

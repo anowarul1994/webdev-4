@@ -27,11 +27,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index']);
 
+//user controller start
+Route::get('/user/registration', [FrontendController::class, 'userRegister']);
+Route::get('/user/login/form', [FrontendController::class, 'userLoginForm']);
+Route::post('/user/store', [FrontendController::class, 'userStore']);
+Route::post('/user/login', [FrontendController::class, 'userLogin']);
+
 //vendor controller
 Route::get('/vendor/registration', [VendorController::class, 'vendorRegistration']);
 Route::get('/vendor/login/form', [VendorController::class, 'vendorLoginform']);
 Route::post('/vendor/login', [VendorController::class, 'vendorlogin']);
 Route::post('/vendor/store', [VendorController::class, 'vendorStore']);
+Route::get('//vendor/logout', [VendorController::class, 'vendorLogOut']);
 
 
 //suplierController

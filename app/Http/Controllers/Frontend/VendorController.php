@@ -129,14 +129,14 @@ class VendorController extends Controller
         }
 
         $product = new Product();
-        $product->category_id=$request->category_id;
-        $product->vendor_id=session()->get("vendorId");
+        $product->category_id = $request->category_id;
+        $product->vendor_id = session()->get("vendorId");
         $product->color_id = $request->color_id;
         $product->size_id = $request->size_id;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->qty = $request->qty;
-        $product->qty = $request->qty;
+        $product->type = $request->type;
         $product->image = $name ;
 
 
@@ -153,6 +153,12 @@ class VendorController extends Controller
 
         return redirect()->back()->with('success', 'Product Add Successfully.');
 
+    }
+
+    public function vendorLogOut()
+    {
+        session()->flush();
+        return redirect('/')->with('success', 'You are logout.');
     }
 
 
