@@ -15,6 +15,37 @@ $(function() {
 <!--mycart-->
 <script type="text/javascript" src="{{ asset('/frontend/assets/') }}/js/bootstrap-3.1.1.min.js"></script>
 <!-- cart -->
+<script defer src="{{ asset('/frontend/assets/') }}/js/jquery.flexslider.js"></script>
+<link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/flexslider.css" type="text/css" media="screen" />
+<script src="{{ asset('/frontend/assets/') }}/js/imagezoom.js"></script>
+<script>
+// Can also be used with $(document).ready()
+$(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide",
+    controlNav: "thumbnails"
+  });
+});
+</script>
+
+  <!--mycart-->
+  <!--start-rate-->
+
+<!--//End-rate-->
+<link href="{{ asset('/frontend/assets/') }}/css/owl.carousel.css" rel="stylesheet">
+<script src="{{ asset('/frontend/assets/') }}/js/owl.carousel.js"></script>
+	<script>
+		$(document).ready(function() {
+		$("#owl-demo").owlCarousel({
+			items : 1,
+			lazyLoad : true,
+			autoPlay : true,
+			navigation : false,
+			navigationText :  false,
+			pagination : true,
+		});
+		});
+	</script>
 <script src="{{ asset('/frontend/assets/') }}/js/simpleCart.min.js"></script>
 <!-- cart -->
 <!--start-rate-->

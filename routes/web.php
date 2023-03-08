@@ -10,7 +10,9 @@ use App\Http\Controllers\Frontend\VendorController;
 
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Frontend\CartController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +29,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index']);
 
+
 //user controller start
 Route::get('/user/registration', [FrontendController::class, 'userRegister']);
 Route::get('/user/login/form', [FrontendController::class, 'userLoginForm']);
 Route::post('/user/store', [FrontendController::class, 'userStore']);
 Route::post('/user/login', [FrontendController::class, 'userLogin']);
+Route::get('/product/details/{id}', [FrontendController::class, 'productDetails']);
+
+//cart Controller
+Route::post('/add/to/cart', [CartController::class, 'addToCart']);
+Route::get('/checkout', [CartController::class, 'checkOut']);
+Route::post('/cart/product/update/{id}', [CartController::class, 'cartProductUpdate']);
+Route::get('/cart/product/delete/{id}', [CartController::class, 'cartProductDelete']);
+Route::post('/customer/details/for-order', [CartController::class, 'customerOrderDetails']);
+
+
+
 
 //vendor controller
 Route::get('/vendor/registration', [VendorController::class, 'vendorRegistration']);
@@ -109,3 +123,7 @@ Route::post('/size/store', [SizeController::class,'sizeStore']);
 Route::post('/size/update/{id}', [SizeController::class,'sizeUpdate']);
 Route::get('/size/delete/{id}', [SizeController::class,'sizeDelete']);
 Route::get('/size/edit/{id}', [SizeController::class,'sizeEdit']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

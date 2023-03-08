@@ -98,7 +98,7 @@
                          <div class="grid-arr">
                               <div class="grid-arrival">
                                    <figure>
-                                        <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal1">
+                                        <a href="#" class="new-gri">
                                              <div class="grid-img">
                                                   <img src="{{asset('/product/'.$product->image)}}" class="img-responsive" alt="">
                                              </div>
@@ -117,12 +117,24 @@
                               <div class="block">
                                    <div class="starbox small ghosting"> </div>
                               </div>
-                              <div class="women">
-                                   <h6><a href="single.html"> {{$product->name}} </a></h6>
-                                   <span class="size">{{$product->size->name}}</span>
-                                   <p><em class="item_price">${{$product->price}}</em></p>
-                                   <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
-                              </div>
+                              <form method="post" action="{{ url('/add/to/cart')}}">
+                                   @csrf
+                                   <input type="hidden" name="vendor_id" value="{{$product->vendor_id}}">
+                                   <input type="hidden" name="product_id" value="{{$product->id}}">
+                                   <input type="hidden" name="price" value="{{$product->price}}">
+                                   <div class="women">
+                                        <h6><a href="{{ url('/product/details/'.$product->id.'/'.$product->slug)}}"> {{$product->name}} </a></h6>
+                                        <span class="size">{{$product->size->name}}</span>
+                                        <p><em class="item_price">${{$product->price}}</em></p>
+                                        @if (auth()->check())
+                                            <button class="btn btn-sm btn-primary">Add to Cart</button>
+                                        @else 
+                                        <a href="{{route('login')}}" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                                        @endif
+                                        
+                                   </div>
+                              </form>
+                              
                          </div>
                     </div>
                     @endforeach

@@ -18,7 +18,7 @@
 					@if(session()->has('error'))
 					<div class="alert alert-success"> {{session()->get('error')}} </div>
 					@endif
-					<form action=" {{route('register')}} " method="POST" >
+					<form action=" {{ route('register')}} " method="POST" >
 						@csrf
 						<div class="form-group">
 							<label for="name">Name</label>
@@ -43,7 +43,7 @@
 						</div>
 						<button type="submit" class="btn btn-success btn-block">Registration</button>
 						<br>
-						<span>I already have an account, </span><a style="color: rgb(3, 19, 248); font-weight:blod; " href=" {{ url('/user/login/form') }}">Login</a>
+						<span>I already have an account, </span><a style="color: rgb(3, 19, 248); font-weight:blod; " href=" {{ route('login') }}">Login</a>
 					</form>
 				</div>
 			</div>

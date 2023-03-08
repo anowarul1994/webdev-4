@@ -7,15 +7,30 @@
                </div>
                <div class="top-right">
                     <ul>
-                         <li><a href="checkout.html">Checkout</a></li>
-                         <li><a href=" {{url('/user/login/form')}}  ">User Login</a></li>
-                         <li><a href=" {{url('/user/registration')}} "> User Register </a></li>     
+                         
+                         @if(auth()->check())
+                              <li><a href="{{ url ('/checkout')}}">Checkout</a></li>
+                              <li><a href="#" class="badge badge-danger">{{auth()->user()->name}}</a></li>
+                              <li>
+                                   <a href=" #" onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();"> Logout</a>
+                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                   </form>
+                              </li> 
+
+                                   
+                         @else
+                              <li><a href=" {{route('login')}}  ">User Login</a></li>
+                              <li><a href=" {{route('register')}} "> User Register </a></li>  
+                         @endif
+                            
                          @if (session()->has('vendorId'))
-                         <li><a href=" {{url('/vendor/dashboard')}}" class="badge badge-danger">{{ session()->get('vendorName')}}</a></li>
-                         <li><a href=" {{url('/vendor/logout')}} "> Log Out </a></li>
+                              <li><a href=" {{url('/vendor/dashboard')}}" class="badge badge-danger">{{ session()->get('vendorName')}}</a></li>
+                              <li><a href=" {{url('/vendor/logout')}} "> Log Out </a></li>
                          @else 
-                         <li><a href=" {{url('/vendor/login/form')}}  ">Login</a></li>
-                         <li><a href=" {{url('/vendor/registration')}} "> Vendor Account </a></li>                       
+                              <li><a href=" {{url('/vendor/login/form')}}  ">Vendor Login</a></li>
+                              <li><a href=" {{url('/vendor/registration')}} "> Vendor Account </a></li>                       
                          @endif
                          
                     </ul>
@@ -55,7 +70,7 @@
                                                             @foreach($category->subcategory as $subcategory)
                                                             <ul class="multi-column-dropdown">
                                                                  <h6>Submenu1</h6>
-                                                                 <li><a href="products.html"> {{$subcategory->name}} </a></li>
+                                                                 <li><a href="#"> {{$subcategory->name}} </a></li>
                                                                  
                                                             </ul>
                                                             @endforeach
@@ -71,20 +86,36 @@
                     </div>
                     
                     <div class="header-right2">
+                        
+                         @if($cartProducts > 0)
+
                          <div class="cart box_1">
-                              <a href="checkout.html">
+                              <a href="{{ url ('/checkout')}}">
                                    <h3>
                                         <div class="total">
-                                             <span class="simpleCart_total"></span> (<span id="simpleCart_quantity"
-                                                  class="simpleCart_quantity"></span> items)
+                                             <span class=""></span> ({{$cartProducts}} items)
                                         </div>
-                                        <img src="images/bag.png" alt="" />
+                                        <img src="{{ asset ('/frontend/assets')}}/images/bag.png" alt="cart logo" />
                                    </h3>
                               </a>
-                              <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                              <div class="clearfix"> </div>
                          </div>
-                    </div>
+                         @else
+                         <div class="cart box_1">
+                              <a href="#">
+                                   <h3>
+                                        <div class="total">
+                                             <span class=""></span> (0 items)
+                                        </div>
+                                        <img src="{{ asset ('/frontend/assets')}}/images/bag.png" alt="cart logo" />
+                                   </h3>
+                              </a>
+                         </div>
+
+
+                         <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                              <div class="clearfix"> </div>
+                         @endif
+                         </div>
                     <div class="clearfix"> </div>
                </div>
           </div>

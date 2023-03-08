@@ -80,4 +80,11 @@ class FrontendController extends Controller
       return redirect()->back()->with('success', 'User Add Successfully.');
     }
 
+
+    public function productDetails($id)
+    {
+      $product = Product::find($id);
+      return view('frontend.home.product-details', compact('product'));
+    }
+
 }
