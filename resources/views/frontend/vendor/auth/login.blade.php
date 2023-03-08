@@ -12,18 +12,24 @@
 					<h2 style="text-align: center;">Login</h2>
 				</div>
 				<div class="card-body">
-					@if(session()->has('error'))
+					{{-- @if(session()->has('error'))
 						<div class="alert alert-danger"> {{session()->get('error')}} </div>
-					@endif
+					@endif --}}
 					<form action="{{ url('/vendor/login') }}" method="POST">
 						@csrf
 						<div class="form-group">
 							<label for="email">Email</label>
 							<input type="email" id="email" class="form-control" name="email" placeholder="Enter your email">
+                            @error('email')
+                                <p class="text-danger mb-0"><small><i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}</small></p>
+                            @enderror
 						</div>
 						<div class="form-group">
 							<label for="password">password</label>
 							<input type="password" id="password" class="form-control" name="password" placeholder="Enter your password">
+                            @error('password')
+                                <p class="text-danger mb-0"><small><i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}</small></p>
+                            @enderror
 						</div>
 						<button type="submit" class="btn btn-primary btn-block">Login</button>
 						<br>
@@ -33,7 +39,7 @@
 			</div>
 		</div>
 		<div class="col-md-4"></div>
-		
+
 	</div>
 </div>
 

@@ -17,9 +17,13 @@
     <form method="POST" action="{{ url('/admin/login') }}">
         @csrf
         <div class="user-box">
-            <input type="text" name="email" required="">
-            <label>Email</label>
+            <input type="text" name="email" id="email">
+            <label for="email">Email</label>
+            @error('email')
+                <p class="text-white mb-0"><small><i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}</small></p>
+            @enderror
         </div>
+
         <div class="user-box">
             <input type="password" name="password" required="">
             <label>Password</label>

@@ -12,38 +12,56 @@
 					<h2 style="text-align: center;">Registration</h2>
 				</div>
 				<div class="card-body">
-					@if(session()->has('success'))
+					{{-- @if(session()->has('success'))
 					<div class="alert alert-success"> {{session()->get('success')}} </div>
 					@endif
 					@if(session()->has('error'))
 					<div class="alert alert-success"> {{session()->get('error')}} </div>
-					@endif
+					@endif --}}
 					<form action=" {{url('/vendor/store')}} " method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
 							<label for="name">Name</label>
 							<input type="text" id="name" class="form-control" name="name" placeholder="Enter your name">
+                            @error('name')
+                                <p class="text-danger mb-0"><small><i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}</small></p>
+                            @enderror
 						</div>
 						<div class="form-group">
 							<label for="email">Email</label>
 							<input type="email" id="email" class="form-control" name="email" placeholder="Enter your email">
+                            @error('email')
+                                <p class="text-danger mb-0"><small><i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}</small></p>
+                            @enderror
 						</div>
 						<div class="form-group">
 							<label for="phone">Phone</label>
 							<input type="text" id="phone" class="form-control" name="phone" placeholder="Enter your phone">
+                            @error('phone')
+                                <p class="text-danger mb-0"><small><i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}</small></p>
+                            @enderror
 						</div>
 						<div class="form-group">
 							<label for="address">Address</label>
 							<textarea name="address" id="address" placeholder="address" class="form-control" ></textarea>
+                            @error('address')
+                                <p class="text-danger mb-0"><small><i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}</small></p>
+                            @enderror
 						</div>
 						<div class="form-group">
 							<label for="logo">Logo</label>
 							<input type="file" id="logo" class="form-control" name="logo">
+                            @error('logo')
+                            <p class="text-danger mb-0"><small><i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}</small></p>
+                            @enderror
 						</div>
-						
+
 						<div class="form-group">
 							<label for="password">password</label>
 							<input type="password" id="password" class="form-control" name="password" placeholder="Enter your password">
+                            @error('password')
+                             <p class="text-danger mb-0"><small><i class="fa-solid fa-triangle-exclamation"></i> {{ $message }}</small></p>
+                            @enderror
 						</div>
 						<button type="submit" class="btn btn-success btn-block">Registration</button>
 						<br>
@@ -53,7 +71,7 @@
 			</div>
 		</div>
 		<div class="col-md-4"></div>
-	</div>		
+	</div>
 </div>
 
 @endsection

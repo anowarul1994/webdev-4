@@ -38,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        
+
         $this->middleware('guest');
     }
 
@@ -51,9 +51,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required','min:3','string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required','string'],
+            'phone' => ['required','string','min:11', 'max:15'],
             'address' => ['required'],
             'password' => ['required', 'string', 'min:8'],
         ]);
